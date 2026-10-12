@@ -195,6 +195,29 @@ Artık fırçamızı elimize alıp zindanı çizmeye hazırız:
 
 ---
 
+### Adım 1.7: Önemli Tasarım Kuralı: Sandıklar, Kapılar ve Kutular Neden Tilemap ile Çizilmez?
+
+Öğrencilerin bu aşamada en sık sorduğu sorulardan biri:  
+*`"Madem Kenney paketinde sandık, kapı ve kutu karoları da var, onları da zemin gibi Tilemap ile fırçayla boyayabilir miyiz?"`*
+
+**Cevap: KESİNLİKLE HAYIR.**
+
+Zindan oyunlarında iki farklı nesne mimarisi vardır ve bunları birbirine karıştırmamak gerekir:
+
+1. **Statik Dünya Elemanları (Tilemap):**
+   * **Nelerdir?** Zemin taşları (`Tilemap_Floor`), çevre duvarları (`Tilemap_Walls`) ve zemin süsleri (`Tilemap_Decorations`).
+   * **Özelliği:** Oyun boyunca sabit kalırlar, durumları değişmez, üzerlerinde bağımsız C# kodu çalışmaz. Tek bir ızgara üzerinde yüzlerce karo sıfır performans kaybıyla (tek Draw Call ile) çizilir.
+
+2. **Dinamik & Etkileşimli Nesneler (Bağımsız GameObject / Prefab):**
+   * **Nelerdir?** Sandıklar, kilitli kapılar, parçalanabilir ahşap kutular, toplanabilir altınlar, iksirler ve canavarlar.
+   * **Neden Tilemap Değil?**
+     * **Görsel Değişimi (Sprite Swap):** Sandık kapalıyken kapalı sandık görselidir (`tile_0089`), kılıçla vurulunca açık sandık görseline (`tile_0090`) dönüşür. Tilemap üzerindeki tek bir karoyu kodla değiştirmek çok zordur; oysa bağımsız bir GameObject'in görselini C# ile tek satırda (`spriteRenderer.sprite = openSprite;`) değiştirebiliriz.
+     * **C# Script ve Mantık:** Sandığa `Chest.cs`, kutuya `BreakableCrate.cs`, kapıya `Door.cs` takmamız gerekir. Tilemap karolarına bağımsız kod bağlanamaz.
+     * **Tetikleyici Fizik (Trigger Collider):** Sandığın yanına gidip kılıç salladığımızda açılması veya altının üstünden geçerken çantaya eklenmesi için `Collider2D (Is Trigger)` gereklidir.
+     * **Sıralama Katmanı (Sorting Layer):** Bu nesnelerin tamamı, Adım 1.3'te oluşturduğumuz **`Interactables`** Sorting Layer'ında bağımsız birer GameObject/Prefab olarak sahneye yerleştirilecek; **FAZ 4** ve **FAZ 6**'da kodlanacaktır.
+
+---
+
 ## 5. Öğrenci Kontrol Listesi (Self-Check Checklist)
 
 Faz 1'i eksiksiz tamamladığınızdan emin olmak için aşağıdaki maddeleri tek tek kontrol edin:
