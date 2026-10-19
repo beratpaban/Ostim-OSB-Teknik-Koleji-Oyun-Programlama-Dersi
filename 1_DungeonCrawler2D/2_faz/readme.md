@@ -192,10 +192,6 @@ Karakterimizin katı duvarlara çarpıp durabilmesi için bir fizik gövdesine (
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>
-/// 2D Zindan Oyunu - Karakter Hareket Kontrolcüsü
-/// OSTİM OSB Teknik Koleji - Oyun Programlama Dersi
-/// </summary>
 public class PlayerController : MonoBehaviour
 {
     [Header("Hareket Parametreleri")]
