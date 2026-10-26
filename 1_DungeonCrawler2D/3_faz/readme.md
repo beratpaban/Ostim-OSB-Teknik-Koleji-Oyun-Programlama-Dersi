@@ -273,7 +273,7 @@ public class MeleeAttack : MonoBehaviour
 
     /// <summary>
     /// Kılıcı saliseler içinde farenin baktığı yöne savuran Coroutine
-    /// </summary>
+
     private IEnumerator PerformSlashRoutine()
     {
         isAttacking = true;
