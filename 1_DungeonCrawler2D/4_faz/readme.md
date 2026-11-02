@@ -25,7 +25,7 @@ Bu kılavuzu tamamladığınızda:
 Yeni başlayan geliştiricilerin kılıçla bir nesneye vururken yaptığı en büyük hata spagetti kod yazmaktır:
 
 ```csharp
-// ❌ YANLIŞ VE SÜRDÜRÜLEMEZ YÖNTEM (Spagetti Kod):
+// YANLIŞ VE SÜRDÜRÜLEMEZ YÖNTEM (Spagetti Kod):
 void OnTriggerEnter2D(Collider2D other)
 {
     if (other.CompareTag("BreakableCrate")) {
@@ -68,7 +68,7 @@ _`"Benim türüm ne olursa olsun, birisi bana TakeDamage(hasarMiktari) dediğind
 Böylece kılıç kiminle temas ettiğini zerre kadar umursamaz:
 
 ```csharp
-// ✅ TERTEMİZ ENDÜSTRİ STANDARDI:
+// TERTEMİZ ENDÜSTRİ STANDARDI:
 IDamageable target = other.GetComponent<IDamageable>();
 if (target != null)
 {
@@ -268,14 +268,14 @@ public class PlayerInventory : MonoBehaviour
     public void AddCoins(int amount)
     {
         coinCount += amount;
-        Debug.Log($"💰 Altın Toplandı! (+{amount}) | Toplam Altın: {coinCount}");
+        Debug.Log($"Altın Toplandı! (+{amount}) | Toplam Altın: {coinCount}");
     }
 
     // --- ANAHTAR FONKSİYONLARI (İleriki Odalar İçin) ---
     public void AddKey()
     {
         keyCount++;
-        Debug.Log($"🗝️ Altın Anahtar Alındı! | Toplam Anahtar: {keyCount}");
+        Debug.Log($"Altın Anahtar Alındı! | Toplam Anahtar: {keyCount}");
     }
 
     public bool UseKey()
@@ -283,11 +283,11 @@ public class PlayerInventory : MonoBehaviour
         if (keyCount > 0)
         {
             keyCount--;
-            Debug.Log($"🔓 Anahtar Kullanıldı! | Kalan Anahtar: {keyCount}");
+            Debug.Log($"Anahtar Kullanıldı! | Kalan Anahtar: {keyCount}");
             return true;
         }
 
-        Debug.Log("⛔ Kapıyı açmak için anahtarınız yok!");
+        Debug.Log("Kapıyı açmak için anahtarınız yok!");
         return false;
     }
 }
@@ -572,7 +572,7 @@ public class Chest : MonoBehaviour, IDamageable
         // Canavar görseline geç (tile_0092)
         if (mimicSprite != null) spriteRenderer.sprite = mimicSprite;
 
-        Debug.LogWarning("⚠️ DİKKAT! Bu bir Mimic (Canavar Sandık)! Seni ısırdı!");
+        Debug.LogWarning("DİKKAT! Bu bir Mimic (Canavar Sandık)! Seni ısırdı!");
     }
 }
 ```
@@ -618,7 +618,7 @@ Faz 4'ü tamamladığınızı doğrulamak için şu adımları kontrol edin:
 - [ ] `Chest_Golden` nesnesi hazırlandı, 4 adet sprite karesi bağlandı, prefab yapıldı.
 - [ ] Sahneye kasalar, testiler ve 1 sandık kondu. Oyunu başlatıp sol tıkla kılıç vurulduğunda kutu/testi parçalanıp altın saçıyor mu?
 - [ ] Sandığa yaklaşılıp sağ tıklandığında kapağı açılıp 3 adet altın zıplayarak yere düşüyor mu?
-- [ ] Karakter altınların üzerinden geçtiğinde Unity konsolunda `💰 Altın Toplandı!` mesajı yazıyor mu?
+- [ ] Karakter altınların üzerinden geçtiğinde Unity konsolunda `Altın Toplandı!` mesajı yazıyor mu?
 
 ---
 
